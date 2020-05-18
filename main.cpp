@@ -32,16 +32,7 @@ void display(void)
     if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
         S.rotate(2);
     };
-  /*  if (GetAsyncKeyState((unsigned short)'W') & 0x8000) {
-        if (S.getBullets() > 0) {
-            S.fire();
-            for (int i = 0; i < 6; ++i)
-                if (A[i].getCenter().getX() <= 0) {
-                    A[i] = bullet(S.getDirectional(), S.getCenter()); break;            
-                }
-        } 
-    }*/
-    S.paint();
+    S.print();
     for (int i = 0; i < 6; ++i) {
         A[i].print();
         A[i].moveForward(0.5);
@@ -75,9 +66,6 @@ void changeWinSize(int w, int h)
 }
 
 void keyFunc(unsigned char key, int x, int y) {
-  /*  if (key == 'd') {
-        S.rotate(5);
-    } */
     if (key == 'w') {
         if (S.getBullets() > 0) {
             S.fire();
@@ -93,7 +81,7 @@ void keyFunc(unsigned char key, int x, int y) {
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(1280, 720);
+    glutInitWindowSize(640, 480);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("Primitives");
 

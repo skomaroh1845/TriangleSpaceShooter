@@ -12,7 +12,7 @@ SpaceShip::SpaceShip(char keyRotate, char keyAction, const T& Center, float r, f
 	this->v3 = T(0, 4); //main vector
 };
 
-void SpaceShip::paint() const {
+void SpaceShip::print() const {
 	triangle A(this->v1 + this->getCenter(), this->v2 + this->getCenter(), this->v3 + this->getCenter());
 	float r, g, b;
 	this->getColor(r, g, b);
@@ -31,15 +31,15 @@ void SpaceShip::paint() const {
 		glPointSize(6);
 		glColor3f(1, 0.5, 0);
 		glBegin(GL_POINTS);
-		glVertex2f(this->v3.getX() + this->getCenter().getX(), this->v3.getY() + this->getCenter().getY());
-		glVertex2f((this->v3 * 0.9 + this->v1 * 0.3).getX() + this->getCenter().getX(), (this->v3 * 0.9 + this->v1 * 0.3).getY() + this->getCenter().getY());
+			glVertex2f(this->v3.getX() + this->getCenter().getX(), this->v3.getY() + this->getCenter().getY());
+			glVertex2f((this->v3 * 0.9 + this->v1 * 0.3).getX() + this->getCenter().getX(), (this->v3 * 0.9 + this->v1 * 0.3).getY() + this->getCenter().getY());
 		glEnd();
 	}
 	if (this->bullets == 1) {
 		glPointSize(6);
 		glColor3f(1, 0.5, 0);
 		glBegin(GL_POINTS);
-		glVertex2f(this->v3.getX() + this->getCenter().getX(), this->v3.getY() + this->getCenter().getY());
+			glVertex2f(this->v3.getX() + this->getCenter().getX(), this->v3.getY() + this->getCenter().getY());
 		glEnd();
 	}
 };
