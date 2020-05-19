@@ -7,6 +7,7 @@ private:
 	rectangle Rect;
 	T v1, v2, v3, v4;
 	char Rotation;
+	float size;
 public:
 	Wall();
 	Wall(const T& center, float size, char rotation);
@@ -19,6 +20,8 @@ public:
 	void moveLeft();
 	void moveRight();
 	char getRotation() const;
+	float getSize() const;
+	void getRect(T& v1, T& v2, T& v3, T& v4) const;
 };
 
 #endif // !SPACE_WALL

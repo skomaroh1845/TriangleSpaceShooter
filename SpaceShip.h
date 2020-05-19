@@ -10,7 +10,8 @@ using namespace std;
 class SpaceShip : public Object {
 private:
 	char bullets = 3; // bullets
-	unsigned char BulletTimer = 300; // respawn time 
+	unsigned int BulletTimer = 300; // respawn time 
+	int SpeedTimer = -2;
 	char keyRotate; //controling
 	char keyAction; //controling
 	bool mine = 0;    //bonuses
@@ -33,13 +34,14 @@ public:
 	char getKeyAction() const;
 	char getKeyRotate() const;
 /*	void setBonus(string s);
-	void getBonus(bool& mine, bool& sw, bool& sh, bool& lazer, bool& shoot) const;
+	void getBonus(bool& mine, bool& sw, bool& sh, bool& lazer, bool& shoot) const; */
 	
-	void setDeath(bool death);*/
+	void setDeath(bool death);
 	void CanMove(const vector<Wall>& walls);
 	T getDirectional() const; 
 	void fire();
 	char getBullets() const;
+	void UpSpeed();
 };
 
 #endif // !SPACE_SHIP

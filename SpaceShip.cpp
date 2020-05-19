@@ -19,7 +19,7 @@ void SpaceShip::print() const {
 	float r, g, b;
 	this->getColor(r, g, b);
 	A.setColor(r, g, b);
-	A.print();
+	if (!this->death) A.print();
 	if (this->bullets == 3) {
 		glPointSize(6);
 		glColor3f(1, 0.5, 0);
@@ -60,8 +60,13 @@ void SpaceShip::moveForward() {
 	}
 	if (this->BulletTimer < 1) {
 		this->bullets++;
-		this->BulletTimer = 250;
+		this->BulletTimer = 300;
 	} 
+	if (this->SpeedTimer < 1 && this->SpeedTimer > -1) {
+		this->speed = this->speed / 2;
+		this->SpeedTimer = -2;
+	}
+	if (this->SpeedTimer >= 1) this->SpeedTimer--;
 };
 
 void SpaceShip::fire() {
@@ -81,14 +86,18 @@ void SpaceShip::CanMove(const vector<Wall>& walls) {
 	char X, Y;
 	for (auto it = walls.begin(); it != walls.end(); ++it) {
 		if (it->getRotation() == 'H') {
-			if (abs(it->getCenter().getY() - this->getCenter().getY()) < hy) {
+			if ((abs(it->getCenter().getY() - this->getCenter().getY()) < hy) && 
+				(this->getCenter().getX() < it->getCenter().getX() + it->getSize()/2) &&
+				(this->getCenter().getX() > it->getCenter().getX() - it->getSize()/2)) {
 				hy = abs(it->getCenter().getY() - this->getCenter().getY());
 				if (it->getCenter().getY() > this->getCenter().getY()) Y = 'U';
 				else Y = 'D';
 			}
 		}
 		else {
-			if (abs(it->getCenter().getX() - this->getCenter().getX()) < hx) {
+			if (abs(it->getCenter().getX() - this->getCenter().getX()) < hx &&
+				(this->getCenter().getY() < it->getCenter().getY() + it->getSize()/2) &&
+				(this->getCenter().getY() > it->getCenter().getY() - it->getSize()/2)) {
 				hx = abs(it->getCenter().getX() - this->getCenter().getX());
 				if (it->getCenter().getX() > this->getCenter().getX()) X = 'R';
 				else X = 'L';
@@ -119,4 +128,15 @@ char SpaceShip::getKeyAction() const {
 
 char SpaceShip::getKeyRotate() const {
 	return this->keyRotate;
+}
+
+void SpaceShip::setDeath(bool death) {
+	this->death = true;
+};
+
+void SpaceShip::UpSpeed() {
+	if (this->SpeedTimer < 0) {
+		this->speed = this->speed * 2;
+		this->SpeedTimer = 300;
+	}
 }

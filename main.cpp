@@ -13,7 +13,7 @@ using namespace std;
 
 vector<Wall> walls;
 vector<SpaceShip> S;
-bullet A[20];
+bullet bull[20];
 
 void display(void)
 {
@@ -45,15 +45,18 @@ void display(void)
     //ShipControl
     for (int i = 0; i < S.size(); i++) {
         S[i].CanMove(walls);
-        // S.moveForward();    
+        S[i].moveForward();    
         if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
             S[i].rotate(2);
         };
         S[i].print();
     }
-    for (int i = 0; i < 6; ++i) {
-        A[i].print();
-        A[i].moveForward(0.5);
+    //
+    //bullets
+    for (int i = 0; i < 20; ++i) {
+        bull[i].print();
+        bull[i].hit(S, walls);
+        bull[i].moveForward(0.62);
     }
     //
 
@@ -88,13 +91,15 @@ void keyFunc(unsigned char key, int x, int y) {
     if (key == S[0].getKeyAction()) {
         if (S[0].getBullets() > 0) {
             S[0].fire();
-            for (int i = 0; i < 6; ++i)
-                if (A[i].getCenter().getX() <= 0) {
-                    A[i] = bullet(S[0].getDirectional(), S[0].getCenter()); break;
+            //bullets
+            for (int i = 0; i < 20; ++i)
+                if (bull[i] .getCenter().getX() < 0) {
+                    bull[i] = bullet(S[0].getDirectional() - S[0].getCenter(), S[0].getCenter());
+                    break;
                 }
-
         }
     }
+    if (key == ' ') S[0].UpSpeed();
     //
 }
 
@@ -106,6 +111,8 @@ void GameInit() {
     walls[1].setWall(T(96, 108), 96, 'H');
     walls[2].setWall(T(192, 54), 54, 'V');
     walls[3].setWall(T(96, 0), 96, 'H'); 
+    walls.push_back(Wall(T(40, 20), 15, 'H'));
+  //  walls.push_back(Wall(T(55, 20), 1, 'V'));
   /*  while (true) {
         std::cout << "Input map name: ";
         std::cin >> fname;
@@ -137,6 +144,9 @@ void GameInit() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         S.push_back(SpaceShip('d', 'w', T(15*(i+1), 10), 1, 0.5, 1));
+    }
+    for (int i = 0; i < 20; i++) {
+        bull[i] = bullet();
     }
 }
 

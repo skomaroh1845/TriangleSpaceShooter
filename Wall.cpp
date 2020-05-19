@@ -3,6 +3,7 @@
 #include <glut.h>
 
 Wall::Wall() {
+	this->size = 1;
 	this->Rect.setEmpty(0);
 	this->Rect.setColor(1, 0, 0);
 	this->v1.setX(-2);
@@ -20,6 +21,7 @@ Wall::Wall() {
 } 
 
 Wall::Wall(const T& center, float size, char rotation) {
+	this->size = size;
 	this->Rect.setEmpty(0);
 	this->Rect.setColor(1, 0, 0);
 	this->v1.setX(-2);
@@ -37,6 +39,7 @@ Wall::Wall(const T& center, float size, char rotation) {
 }
 
 void Wall::setWall(const T& center, float size, char rotation) {
+	this->size = size;
 	this->setCenter(center);
 	this->changeLength(size);
 	this->Rotation = rotation;
@@ -63,6 +66,7 @@ void Wall::rotate() {
 };
 
 void Wall::changeLength(int x) {
+	this->size += x;
 	this->v1.setY(this->v1.getY() + x);
 	this->v2.setY(this->v2.getY() + x);
 	this->v3.setY(this->v3.getY() - x);
@@ -95,4 +99,15 @@ void Wall::moveRight() {
 
 char Wall::getRotation() const {
 	return this->Rotation;
+}
+
+float Wall::getSize() const {
+	return this->size;
+}
+
+void Wall::getRect(T& v1, T& v2, T& v3, T& v4) const {
+	v1 = this->v1 + this->getCenter();
+	v2 = this->v2 + this->getCenter();
+	v3 = this->v3 + this->getCenter();
+	v4 = this->v4 + this->getCenter();
 }
