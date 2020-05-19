@@ -9,6 +9,7 @@ private:
 	char Rotation;
 public:
 	Wall();
+	Wall(const T& center, float size, char rotation);
 	void setWall(const T& center, float size, char rotation); // rotation: V = vertically or H = horizontally; size = length/2;
 	void print();
 	void rotate();

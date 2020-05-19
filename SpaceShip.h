@@ -30,10 +30,11 @@ public:
 	void print() const;
 	void rotate(float angle);
 	void moveForward();
-/*	void setBonus(string s);
-	void getBonus(bool& mine, bool& sw, bool& sh, bool& lazer, bool& shoot) const;
 	char getKeyAction() const;
 	char getKeyRotate() const;
+/*	void setBonus(string s);
+	void getBonus(bool& mine, bool& sw, bool& sh, bool& lazer, bool& shoot) const;
+	
 	void setDeath(bool death);*/
 	void CanMove(const vector<Wall>& walls);
 	T getDirectional() const; 

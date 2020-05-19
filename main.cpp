@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
 #include "SpaceShip.h"
@@ -8,9 +9,11 @@
 #include <glut.h>
 #include <Windows.h>
 
+using namespace std;
+
 vector<Wall> walls;
-SpaceShip S('d', 'w', T(10, 10), 1, 1, 1);
-bullet A[6];
+vector<SpaceShip> S;
+bullet A[20];
 
 void display(void)
 {
@@ -40,12 +43,14 @@ void display(void)
     //
 
     //ShipControl
-    S.CanMove(walls);
-    S.moveForward();    
-    if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
-        S.rotate(2);
-    };
-    S.print();
+    for (int i = 0; i < S.size(); i++) {
+        S[i].CanMove(walls);
+        // S.moveForward();    
+        if (GetAsyncKeyState((unsigned short)'D') & 0x8000) {
+            S[i].rotate(2);
+        };
+        S[i].print();
+    }
     for (int i = 0; i < 6; ++i) {
         A[i].print();
         A[i].moveForward(0.5);
@@ -80,12 +85,12 @@ void changeWinSize(int w, int h)
 
 void keyFunc(unsigned char key, int x, int y) {
     //ShipControl
-    if (key == 'w') {
-        if (S.getBullets() > 0) {
-            S.fire();
+    if (key == S[0].getKeyAction()) {
+        if (S[0].getBullets() > 0) {
+            S[0].fire();
             for (int i = 0; i < 6; ++i)
                 if (A[i].getCenter().getX() <= 0) {
-                    A[i] = bullet(S.getDirectional(), S.getCenter()); break;
+                    A[i] = bullet(S[0].getDirectional(), S[0].getCenter()); break;
                 }
 
         }
@@ -93,14 +98,51 @@ void keyFunc(unsigned char key, int x, int y) {
     //
 }
 
-int main(int argc, char** argv) {
+void GameInit() {
+    string fname;
     std::cout << "Game start" << std::endl;
     walls.resize(4);
     walls[0].setWall(T(0, 54), 54, 'V');
     walls[1].setWall(T(96, 108), 96, 'H');
     walls[2].setWall(T(192, 54), 54, 'V');
     walls[3].setWall(T(96, 0), 96, 'H'); 
+  /*  while (true) {
+        std::cout << "Input map name: ";
+        std::cin >> fname;
+        ifstream ifile(fname);
+        ifile.open(fname);
+        if (ifile.is_open()) {
+            std::cout << "file error" << std::endl;
+        }
+        else {
+            std::cout << "Map loading..." << std::endl;
+            int x = 0, y, size, rotation, n; // 0 = hor, 1 = vert
+            //ifile >> n;
+            for (int i = 0; i < 2; i++) {
+                //ifile >> x >> y >> size >> rotation;
+                char a;
+                ifile.get(a);
+                cout << a << endl;
+               // std::cout << x << y << size << rotation << std::endl;
+             /*   if (rotation == 0) 
+                    walls.push_back(Wall(T(x, y), size, 'H'));
+                else 
+                    walls.push_back(Wall(T(x, y), size, 'V')); *
+            }                    
+            ifile.close();
+        }
+    } */
+    std::cout << "Input num players: ";
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        S.push_back(SpaceShip('d', 'w', T(15*(i+1), 10), 1, 0.5, 1));
+    }
+}
 
+int main(int argc, char** argv) {
+    GameInit();
+    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(800, 450);

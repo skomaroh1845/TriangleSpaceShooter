@@ -19,6 +19,23 @@ Wall::Wall() {
 	this->Rect.setV4(this->getCenter() + this->v4);
 } 
 
+Wall::Wall(const T& center, float size, char rotation) {
+	this->Rect.setEmpty(0);
+	this->Rect.setColor(1, 0, 0);
+	this->v1.setX(-2);
+	this->v1.setY(+2);
+	this->v2.setX(+2);
+	this->v2.setY(+2);
+	this->v3.setX(+2);
+	this->v3.setY(-2);
+	this->v4.setX(-2);
+	this->v4.setY(-2);
+	this->setCenter(center);
+	this->changeLength(size);
+	this->Rotation = rotation;
+	if (rotation == 'H') this->rotate();
+}
+
 void Wall::setWall(const T& center, float size, char rotation) {
 	this->setCenter(center);
 	this->changeLength(size);

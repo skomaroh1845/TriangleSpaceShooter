@@ -112,3 +112,11 @@ void SpaceShip::CanMove(const vector<Wall>& walls) {
 		if (X == 'L' && dX > 0) this->moveX = true;
 	}
 }
+
+char SpaceShip::getKeyAction() const {
+	return this->keyAction;
+}
+
+char SpaceShip::getKeyRotate() const {
+	return this->keyRotate;
+}
