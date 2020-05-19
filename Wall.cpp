@@ -15,7 +15,10 @@ Wall::Wall() {
 	this->Rect.setV2(this->getCenter() + this->v2);
 	this->Rect.setV3(this->getCenter() + this->v3);
 	this->Rect.setV4(this->getCenter() + this->v4);
-}
+	float r, g, b;
+	this->getColor(r, g, b);
+	this->Rect.setColor(r, g, b);
+} 
 
 void Wall::print() {
 	this->Rect.print();
@@ -44,19 +47,21 @@ void Wall::changeLength(int x) {
 }
 
 void Wall::moveUp() {
-	this->Rect.moveUp(2);
-	this->setCenter(Vector2D(this->getCenter().getX(), this->getCenter().getY() + 2));
+	this->Rect.moveUp(4);
+	this->setCenter(Vector2D(this->getCenter().getX(), this->getCenter().getY() + 4));
 }
 
 void Wall::moveDown() {
-	this->Rect.moveDown(2);
-	this->setCenter(Vector2D(this->getCenter().getX(), this->getCenter().getY() - x));
+	this->Rect.moveDown(4);
+	this->setCenter(Vector2D(this->getCenter().getX(), this->getCenter().getY() - 4));
 }
 
 void Wall::moveLeft() {
-	this->setCenter(Vector2D(this->getCenter().getX() - 2, this->getCenter().getY()));
+	this->Rect.moveLeft(4);
+	this->setCenter(Vector2D(this->getCenter().getX() - 4, this->getCenter().getY()));
 }
 
 void Wall::moveRight() {
-	this->setCenter(Vector2D(this->getCenter().getX() + 2, this->getCenter().getY()));
+	this->Rect.moveRight(4);
+	this->setCenter(Vector2D(this->getCenter().getX() + 4, this->getCenter().getY()));
 }

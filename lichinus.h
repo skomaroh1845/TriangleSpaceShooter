@@ -13,7 +13,7 @@ private:
 	bool death = false;
 public:
 	lichinus(SpaceShip& ship);
-	void paint() const;
+	void print() const;
 	void rotate();
 	void moveForward(float x);
 };

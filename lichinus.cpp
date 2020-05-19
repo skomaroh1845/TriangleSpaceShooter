@@ -11,7 +11,7 @@ lichinus::lichinus(SpaceShip& ship) {
 	this->diractional = ship.getDirectional(); */
 };
 
-void lichinus::paint() const {
+void lichinus::print() const {
 
 }
 

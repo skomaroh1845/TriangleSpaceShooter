@@ -2,7 +2,7 @@
 #define SPACE_BATTLE_SHIP
 
 #include "Object.h"
-#include <string>
+//#include <string>
 
 using namespace std;
 
@@ -23,7 +23,7 @@ private:
 	T v3; // bag 
 public:
 	SpaceShip(char keyRotate, char keyAction, const T& Center, float r, float g, float b);
-	void paint() const;
+	void print() const;
 	void rotate(float angle);
 	void moveForward(float x);
 /*	void setBonus(string s);

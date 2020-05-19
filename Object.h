@@ -1,5 +1,6 @@
 #ifndef SPACE_OBJECT
 #define SPACE_OBJECT
+
 #include "C:\Users\Skomaroh\Desktop\Primitives\Vector2D.h"
 #include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
 
@@ -27,7 +28,7 @@ public:
 	T getCenter() const {
 		return this->CenterPoint;
 	}
-	void moveUp(int x) {
+/*	void moveUp(int x) {
 		this->setCenter(Vector2D(this->getCenter().getX(), this->getCenter().getY() + x));
 	};
 	void moveDown(int x) {
@@ -38,6 +39,6 @@ public:
 	};
 	void moveRight(int x) {
 		this->setCenter(Vector2D(this->getCenter().getX() + x, this->getCenter().getY()));
-	};
+	}; */
 };
 #endif // !SPACE_OBJECT
