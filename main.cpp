@@ -2,7 +2,7 @@
 #include <vector>
 #include <fstream>
 
-#include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
+#include "Primitives.h"
 #include "SpaceShip.h"
 #include "bullets.cpp"
 #include "Wall.h"

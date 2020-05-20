@@ -1,5 +1,5 @@
 #include "SpaceShip.h"
-#include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
+#include "Primitives.h"
 #include <glut.h>
 #include <cmath>
 #include <iostream> //

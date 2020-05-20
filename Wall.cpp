@@ -1,5 +1,5 @@
 #include "Wall.h"
-#include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
+#include "Primitives.h"
 #include <glut.h>
 
 Wall::Wall() {
