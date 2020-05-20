@@ -1,8 +1,8 @@
 #ifndef SPACE_OBJECT
 #define SPACE_OBJECT
 
-#include "C:\Users\Skomaroh\Desktop\Primitives\Vector2D.h"
-#include "C:\Users\Skomaroh\Desktop\Primitives\Primitives.h"
+#include "Vector2D.h"
+#include "Primitives.h"
 
 typedef Vector2D T;
 
